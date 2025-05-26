@@ -2,18 +2,21 @@ import {
   MaterialReactTable,
   useMaterialReactTable,
   type MRT_ColumnDef,
-} from "material-react-table";
-import { useMemo } from "react";
-import sourceData from "./source-data.json";
-import type { SourceDataType, TableDataType } from "./types";
-import { format, subMonths } from "date-fns";
+} from "material-react-table"; // Importing Material React Table components and types
+import { useMemo } from "react"; // Importing useMemo hook from React
+import sourceData from "./source-data.json"; // Importing source data from a local JSON file
+import type { SourceDataType, TableDataType } from "./types"; // Importing TypeScript types
+import { format, subMonths } from "date-fns"; // Importing date formatting utilities
 
 //  Helper: Get Net Earning for a specific month (e.g. "June" format: "yyyy-MM")
+//  This function receives the costsByMonth object and a targetMonth string.
+//  It searches for the entry in potentialEarningsByMonth that matches the targetMonth.
+//  If found, it returns the costs with "EUR" appended, otherwise returns "-".
 function getNetEarningsForMonth(
   costsByMonth:
     | {
         _applicationId: string;
-        potentialEarningsByMonth: { costs: string; month: string }[];
+        potentialEarningsByMonth: { costs: string; month: string }[]; // Array of earnings by month
         _updatedDate: string;
         _definitionId: string;
         _createdDate: string;
@@ -21,7 +24,7 @@ function getNetEarningsForMonth(
       }
     | {
         _applicationId: string;
-        potentialEarningsByMonth: { costs: string; month: string }[];
+        potentialEarningsByMonth: { costs: string; month: string }[]; // Array of earnings by month
         _updatedDate: string;
         _definitionId: string;
         _createdDate: string;
@@ -29,7 +32,7 @@ function getNetEarningsForMonth(
       }
     | {
         _applicationId: string;
-        potentialEarningsByMonth: { costs: string; month: string }[];
+        potentialEarningsByMonth: { costs: string; month: string }[]; // Array of earnings by month
         _updatedDate: string;
         _definitionId: string;
         _createdDate: string;
